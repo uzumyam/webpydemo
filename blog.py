@@ -15,7 +15,14 @@ t_global = {
 render = web.template.render('templates', base='base', globals=t_global)
 
 class Index:
-    def GET(self, id=1):
+    def GET(self):
+        '''show page'''
+        posts = model.get_posts()
+        return render.index(posts)
+
+class View:
+    def GET(self, id):
+        '''view single post'''
         post = model.get_post(int(id))
         return render.view(post)
 
